@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { gql, useMutation } from '@apollo/client'
 import { useHistory } from "react-router-dom";
+import { useSnackbar } from 'notistack';
 
 import classes from './styles/Register.module.scss'
 
@@ -22,7 +23,7 @@ mutation createUser($name: String!, $lastname: String!, $dni: String!, $email: S
     }
   }`
 
-const Register = () => {
+const Register = (props) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -31,21 +32,20 @@ const Register = () => {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   const [createUser] = useMutation(CREATE_USER)
 
   const handleSubmit = (event) => {
 
-    createUser({ variables: { name, lastname, dni, email, role, password } })
-    console.log(`
-          Name: ${name}
-          Lastname: ${lastname}
-          DNI: ${dni}
-          Role: ${role}
-          Password: ${password}
-        `);
-
+    createUser({ variables: { name, lastname, dni, email, role, password } }).then(res => {
+      console.log(res.data)
+      enqueueSnackbar("Registered used", { variant: 'success' });
+      history.push("/");     
+    }).catch(err => {
+      enqueueSnackbar(err.message, { variant: 'error' });
+    })
     event.preventDefault();
-    history.push("/");
   }
 
   return (

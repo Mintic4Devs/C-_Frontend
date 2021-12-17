@@ -4,6 +4,7 @@ import "./styles/index.scss";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/client';
+import { SnackbarProvider } from 'notistack';
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
@@ -14,9 +15,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <Router>
-            <App />
-        </Router>
+        <SnackbarProvider>
+            <Router>
+                <App />
+            </Router>
+        </SnackbarProvider>
     </ApolloProvider>,
     document.getElementById("root")
 );

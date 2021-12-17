@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {gql, useMutation} from '@apollo/client'
 import { useHistory } from "react-router-dom";
 import classes from './styles/Register.module.scss'
+import { useSnackbar } from 'notistack';
 
 const LOGIN_USER = gql`
 mutation login($email: String!, $password: String!) {
@@ -17,19 +18,19 @@ const Login = () => {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const [ loginUser ] = useMutation(LOGIN_USER)
 
     const handleSubmit = (event) => {
 
         loginUser({ variables: { email, password } }).then(res => {
-            console.log(res.data);
+          if (res.data.login === null){
+            enqueueSnackbar( "Email o contraseña incorrecta", { variant: 'error' });
+          }else{
+            localStorage.setItem("token", res.data.login.token);
+          }
         })
-        console.log(`
-              Email: ${email}
-              Password: ${password}
-            `);
-    
         event.preventDefault();
         history.push("/");
       }

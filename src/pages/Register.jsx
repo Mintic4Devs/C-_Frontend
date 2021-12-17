@@ -40,7 +40,7 @@ const Register = (props) => {
 
     createUser({ variables: { name, lastname, dni, email, role, password } }).then(res => {
       console.log(res.data)
-      enqueueSnackbar("Registered used", { variant: 'success' });
+      enqueueSnackbar("Registered user", { variant: 'success' });
       history.push("/");     
     }).catch(err => {
       enqueueSnackbar(err.message, { variant: 'error' });
@@ -83,7 +83,7 @@ const Register = (props) => {
       </label>
 
       <label>
-        Email:
+        Correo:
         <input
           name="email"
           type="email"
@@ -100,14 +100,14 @@ const Register = (props) => {
           onChange={e => setRole(e.target.value)}
           required>
           <option key=""></option>
-          <option key="admin">Administrador</option>
-          <option key="leader">Lider</option>
-          <option key="student">Estudiante</option>
+          <option key="admin">ADMINISTRATOR</option>
+          <option key="leader">LEADER</option>
+          <option key="student">STUDENT</option>
         </select>
       </label>
 
       <label>
-        Password:
+        Contraseña:
         <input
           name="password"
           type="password"
@@ -115,7 +115,7 @@ const Register = (props) => {
           required />
       </label>
 
-      <button>Register</button>
+      <button>Registrarse</button>
     </form>
   );
 };

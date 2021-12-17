@@ -60,7 +60,7 @@ const Login = () => {
                     required />
             </label>
 
-            <button>Ingresa</button>
+            <button>Ingresar</button>
             <h5>Si no tienes cuenta Registrate</h5>
         </form>
     )

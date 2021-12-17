@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Project from "./pages/Project";
 
 function App() {
     return (
@@ -13,6 +14,9 @@ function App() {
                 </Route>
                 <Route exact path="/register">
                     <Register/>
+                </Route>
+                <Route exact path="/project">
+                    <Project/>
                 </Route>
             </Switch>
         </Layout>

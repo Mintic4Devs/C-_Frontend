@@ -48,11 +48,15 @@ const Header = () => {
                     Gestion de Proyectos
                 </Link>
                 <nav
-                    className={`${classes.header__content__nav} ${
-                        menuOpen && size.width < 768 ? classes.isMenu : ""
-                    }`}
+                    className={`${classes.header__content__nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""
+                        }`}
                 >
                     <ul>
+                        <li>
+                            <Link to="/project" onClick={menuToggleHandler}>
+                                Proyectos
+                            </Link>
+                        </li>
                         <li>
                             <Link to="/" onClick={menuToggleHandler}>
                                 Iniciar Sesión

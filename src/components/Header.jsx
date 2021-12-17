@@ -55,11 +55,11 @@ const Header = () => {
                     <ul>
                         <li>
                             <Link to="/" onClick={menuToggleHandler}>
-                                Login
+                                Iniciar Sesión
                             </Link>
                         </li>
                     </ul>
-                    <button onClick={ctaClickHandler}>Register</button>
+                    <button onClick={ctaClickHandler}>Registrarse</button>
                 </nav>
                 <div className={classes.header__content__toggle}>
                     {!menuOpen ? (

@@ -38,10 +38,11 @@ const Login = () => {
     return (
 
         <form onSubmit={handleSubmit} className={classes.form}>
-            <h1>Ingresar</h1>
+            <h1>Iniciar Sesión</h1>
+            <br></br>
 
             <label>
-                Email:
+                Correo:
                 <input
                     name="email"
                     type="email"
@@ -51,7 +52,7 @@ const Login = () => {
             </label>
 
             <label>
-                Password:
+                Contraseña:
                 <input
                     name="password"
                     type="password"
@@ -59,7 +60,8 @@ const Login = () => {
                     required />
             </label>
 
-            <button>Login</button>
+            <button>Ingresa</button>
+            <h5>Si no tienes cuenta Registrate</h5>
         </form>
     )
 };

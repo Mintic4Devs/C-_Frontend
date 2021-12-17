@@ -50,8 +50,8 @@ const Register = (props) => {
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
-      <h1>Crear usuario</h1>
-
+      <h1>Registrarse</h1>
+      <br></br>
       <label>
         Nombre:
         <input
@@ -100,9 +100,9 @@ const Register = (props) => {
           onChange={e => setRole(e.target.value)}
           required>
           <option key=""></option>
-          <option key="admin">ADMINISTRATOR</option>
-          <option key="leader">LEADER</option>
-          <option key="student">STUDENT</option>
+          <option key="admin">Administrador</option>
+          <option key="leader">Lider</option>
+          <option key="student">Estudiante</option>
         </select>
       </label>
 

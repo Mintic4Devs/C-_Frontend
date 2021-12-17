@@ -45,7 +45,7 @@ const Header = () => {
         <header className={classes.header}>
             <div className={classes.header__content}>
                 <Link to="/" className={classes.header__content__logo}>
-                    Gestion de Proyectos
+                    Gestión de Proyectos
                 </Link>
                 <nav
                     className={`${classes.header__content__nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""
@@ -59,7 +59,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link to="/" onClick={menuToggleHandler}>
-                                Iniciar Sesión
+                                Iniciar sesión
                             </Link>
                         </li>
                     </ul>

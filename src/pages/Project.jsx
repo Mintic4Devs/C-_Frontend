@@ -5,17 +5,17 @@ import classes from './styles/Register.module.scss'
 import { useSnackbar } from 'notistack';
 
 const CREATE_PROJECT = gql`
-mutation createProject($name: String!, $budget: Float!,  $date_init: Date!, $date_init: Date!, $leader: User!) {
+mutation createProject($name: String!, $budget: String!,  $date_init: Date!, $date_end: Date!, $leader: String!, $state: Enum_StateProject!, $phase: Enum_PhaseProject! ) {
   createProject (
-    name: "Proyecto 5"
-    budget: 210000
-    date_init: "2021-12-10"
-    date_end: "2022-01-01"
-    leader: "61b99802d2ca17fbba109175"
+    name: $name
+    budget: $budget
+    date_init: $date_init
+    date_end: $date_end
+    leader: $leader
+    state: $state
+    phase: $phase
     ) {
       name
-      phase
-      state
     }
   }`
 
@@ -26,6 +26,8 @@ const Project = () => {
   const [date_init, setDateInit] = useState('');
   const [date_end, setDateEnd] = useState('');
   const [leader, setLeader] = useState("");
+  const [state, setState] = useState("");
+  const [phase, setPhase] = useState("");
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -33,7 +35,7 @@ const Project = () => {
 
   const handleSubmit = (event) => {
 
-    createProject({ variables: { name, budget, date_init, date_end, leader } }).then(res => {
+    createProject({ variables: { name, budget, date_init, date_end, leader, state, phase } }).then(res => {
       console.log(res.data)
       enqueueSnackbar("Registered Project", { variant: 'success' });
       history.push("/");     
@@ -63,7 +65,7 @@ const Project = () => {
         Presupuesto:
         <input
           name="budget"
-          type="number"
+          type="text"
           value={budget}
           onChange={e => setBudget(e.target.value)}
           required />
@@ -97,6 +99,34 @@ const Project = () => {
           value={leader}
           onChange={e => setLeader(e.target.value)}
           required />
+      </label>
+
+      <label>
+        Estado:
+        <select
+          name="state"
+          value={state}
+          onChange={e => setState(e.target.value)}
+          required>
+          <option key=""></option>
+          <option key="active">ACTIVE</option>
+          <option key="inactive">INACTIVE</option>
+        </select>
+      </label>
+
+      <label>
+        Fase:
+        <select
+          name="phase"
+          value={phase}
+          onChange={e => setPhase(e.target.value)}
+          required>
+          <option key=""></option>
+          <option key="initiated">INITIATED</option>
+          <option key="developing">DEVELOPING</option>
+          <option key="finished">FINISHED</option>
+          <option key="null">NULL</option>
+        </select>
       </label>
 
       <button>Crear proyecto</button>

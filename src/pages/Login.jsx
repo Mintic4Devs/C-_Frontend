@@ -38,7 +38,7 @@ const Login = () => {
     return (
 
         <form onSubmit={handleSubmit} className={classes.form}>
-            <h1>Iniciar Sesión</h1>
+            <h1>Iniciar sesión</h1>
             <br></br>
 
             <label>
@@ -61,7 +61,7 @@ const Login = () => {
             </label>
 
             <button>Ingresar</button>
-            <h5>Si no tienes cuenta Registrate</h5>
+            <h5>Si no tienes cuenta, Registrate!</h5>
         </form>
     )
 };

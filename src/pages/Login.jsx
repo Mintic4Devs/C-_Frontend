@@ -29,6 +29,7 @@ const Login = () => {
             enqueueSnackbar( "Email o contraseña incorrecta", { variant: 'error' });
           }else{
             localStorage.setItem("token", res.data.login.token);
+            history.push("/project");
           }
         })
         event.preventDefault();

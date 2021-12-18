@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { gql, useMutation } from '@apollo/client'
-import { useHistory } from "react-router-dom";
 import classes from './styles/Register.module.scss'
 import { useSnackbar } from 'notistack';
+import Leaders from './utils/Leaders'
 
 const CREATE_PROJECT = gql`
 mutation createProject($name: String!, $budget: String!,  $date_init: Date!, $date_end: Date!, $leader: String!, $state: Enum_StateProject!, $phase: Enum_PhaseProject! ) {
@@ -20,7 +20,6 @@ mutation createProject($name: String!, $budget: String!,  $date_init: Date!, $da
   }`
 
 const Project = () => {
-  const history = useHistory();
   const [name, setName] = useState("");
   const [budget, setBudget] = useState("");
   const [date_init, setDateInit] = useState('');
@@ -36,9 +35,14 @@ const Project = () => {
   const handleSubmit = (event) => {
 
     createProject({ variables: { name, budget, date_init, date_end, leader, state, phase } }).then(res => {
-      console.log(res.data)
       enqueueSnackbar("Registered Project", { variant: 'success' });
-      history.push("/");     
+      setName('')
+      setBudget('')
+      setDateInit('')
+      setDateEnd('')
+      setLeader('')
+      setState('')
+      setPhase('')
     }).catch(err => {
       enqueueSnackbar(err.message, { variant: 'error' });
     })
@@ -92,14 +96,10 @@ const Project = () => {
       </label>
 
       <label>
-        Lider:
-        <input
-          name="leader"
-          type="text"
-          value={leader}
-          onChange={e => setLeader(e.target.value)}
-          required />
+        Liders:
+        <Leaders leader={leader} setLeader={setLeader}/>
       </label>
+      
 
       <label>
         Estado:

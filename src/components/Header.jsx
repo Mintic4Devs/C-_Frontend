@@ -62,6 +62,11 @@ const Header = () => {
                                 Iniciar sesión
                             </Link>
                         </li>
+                        <li>
+                            <Link to="/" onClick={menuToggleHandler}>
+                                Cerrar sesión
+                            </Link>
+                        </li>
                     </ul>
                     <button onClick={ctaClickHandler}>Registrarse</button>
                 </nav>
